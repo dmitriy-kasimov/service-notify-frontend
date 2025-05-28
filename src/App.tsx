@@ -1,6 +1,5 @@
 import { AlertsPull } from './AlertsPull/AlertsPull.tsx';
 import { NotificationsPull } from './NotificationsPull/NotificationsPull.tsx';
-import { ModalInfo } from './Modals/ModalInfo.tsx';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
@@ -19,7 +18,6 @@ function App() {
             <button onClick={onClick}>TOAST</button>
             <AlertsPull />
             <NotificationsPull />
-            <ModalInfo />
         </>
     );
 }
