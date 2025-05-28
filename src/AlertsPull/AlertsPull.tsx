@@ -1,51 +1,47 @@
-import { FC, MutableRefObject, useEffect, useRef, useState } from 'react';
-import { Alert, AlertItemType, Text } from '@tr271v0r/ui-tool-kit';
-import { AlertType } from '@tr271v0r/ui-tool-kit/build/types/src/ui/utils/Alert/AlertItem/types/AlertItemProps';
+import { FC } from 'react';
+import { ToastOptions, toast } from 'react-toastify';
+import { TMessage } from '../shared/types/TMessage.ts';
 
 export const AlertsPull: FC = () => {
-    const [alerts, setAlerts] = useState<AlertItemType[]>([]);
+    const alertProps:  ToastOptions<unknown> = {
+        position: 'top-center',
+        autoClose: 3000,
+    }
 
     if ('alt' in window) {
         alt.on(
-            'c:f:showAlert',
-            (
-                title: string,
-                body: string,
-                type: AlertType,
-                showTime: number,
-            ) => {
-                const alert: AlertItemType = {
-                    title,
-                    body: <Text size={'m'}>{body}</Text>,
-                    type,
-                    showTime,
-                };
-
-                setAlerts([...alerts, alert]);
+            'c:f:alert',
+            (notificationJSON: string) => {
+                const notification: TMessage = JSON.parse(notificationJSON)
+                const type = notification.type
+                switch (type){
+                    case 'success': {
+                        toast.success(notification.body, alertProps);
+                        break
+                    }
+                    case 'error': {
+                        toast.error(notification.body, alertProps)
+                        break
+                    }
+                    case 'info': {
+                        toast.info(notification.body, alertProps)
+                        break
+                    }
+                    case 'warning': {
+                        toast.warning(notification.body, alertProps)
+                        break
+                    }
+                    default: {
+                        toast(notification.body, alertProps);
+                        break
+                    }
+                }
             },
         );
     }
 
-    const timerCleanAlerts = useRef() as MutableRefObject<
-        ReturnType<typeof setTimeout>
-    >;
-    useEffect(() => {
-        if (alerts.length > 0) {
-            clearTimeout(timerCleanAlerts.current);
-            timerCleanAlerts.current = setTimeout(() => {
-                const array = [...alerts];
-                array.shift();
-                setAlerts(array);
-            }, alerts[0].showTime ?? 1500);
-        } else {
-            clearTimeout(timerCleanAlerts.current);
-        }
-    }, [alerts]);
-
     return (
-        <Alert
-            portalElement={document.getElementById('root') ?? document.body}
-            alert={alerts[0]}
-        />
+        <>
+        </>
     );
 };
