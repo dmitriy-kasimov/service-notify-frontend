@@ -9,34 +9,31 @@ export const NotificationsPull: FC = () => {
             (notificationJSON: string) => {
                 const notification: TMessage = JSON.parse(notificationJSON)
                 const type = notification.type
-               switch (type){
-                   case 'success': {
-                       toast.success(notification.body)
-                       break
-                   }
-                   case 'error': {
-                       toast.error(notification.body)
-                       break
-                   }
-                   case 'info': {
-                       toast.info(notification.body)
-                       break
-                   }
-                   case 'warning': {
-                       toast.warning(notification.body)
-                       break
-                   }
-                   default: {
-                       toast(notification.body);
-                       break
-                   }
-               }
+                switch (type) {
+                    case 'success': {
+                        toast.success(notification.body);
+                        break;
+                    }
+                    case 'error': {
+                        toast.error(notification.body);
+                        break;
+                    }
+                    case 'info': {
+                        toast.info(notification.body);
+                        break;
+                    }
+                    case 'warning': {
+                        toast.warning(notification.body);
+                        break;
+                    }
+                    default: {
+                        toast(notification.body);
+                        break;
+                    }
+                }
             },
         );
     }
 
-    return (
-        <>
-        </>
-    );
+    return (<></>);
 };

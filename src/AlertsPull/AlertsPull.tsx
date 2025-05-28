@@ -40,8 +40,5 @@ export const AlertsPull: FC = () => {
         );
     }
 
-    return (
-        <>
-        </>
-    );
+    return (<></>);
 };
