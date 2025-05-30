@@ -6,6 +6,8 @@ export const AlertsPull: FC = () => {
     const alertProps:  ToastOptions<unknown> = {
         position: 'top-center',
         autoClose: 3000,
+        hideProgressBar: true,
+        closeButton: false
     }
 
     if ('alt' in window) {

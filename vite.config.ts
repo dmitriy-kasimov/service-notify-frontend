@@ -6,7 +6,7 @@ export default defineConfig({
     plugins: [react()],
     base: './',
     build: {
-        outDir: 'A:/Alone/PROJECTS/GTA5/LAtruckers/server/resources/ServiceNotify/frontend',
+        outDir: 'E:/server/resources/service-notify/frontend',
         emptyOutDir: true,
         minify: 'esbuild',
         reportCompressedSize: false,
